@@ -19,7 +19,7 @@ int main() {
     };
     for (int i = 0; i < parameters::ROW; i++) {
 		for (int j = 0; j < parameters::COL; j++) {
-			solver.boardTraverse(dict, board, i, j, "");
+			solver.boardTraverse(&dict, board, i, j, "");
 		}
 	}
     solver.printSolution();

@@ -22,7 +22,7 @@ public:
 		}
 	}
 	
-	void boardTraverse (const Dictionary &dict, const char boardBlueprint[parameters::ROW][parameters::COL], int row, int col, std::string word) {
+	void boardTraverse (const Dictionary *dict, const char boardBlueprint[parameters::ROW][parameters::COL], int row, int col, std::string word) {
 		char board[parameters::ROW][parameters::COL];
 	
 		for (int i = 0; i < parameters::ROW; i++) {
@@ -40,9 +40,9 @@ public:
 			return;
 		}
 		word += board[row][col];
-		if (dict.prefixExists(word)) {
+		if (dict->prefixExists(word)) {
 			//cout << "found" << endl;
-			if (dict.wordExists(word)) {
+			if (dict->wordExists(word)) {
 				solution.insert(word);
 			}
 			board[row][col] = '*';

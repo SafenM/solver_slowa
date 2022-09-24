@@ -28,11 +28,11 @@ class Dictionary {
         }
     }
 
-    /*~Dictionary()
+    ~Dictionary()
     {
     deleteTrie(root);
     //std::cout << "Dictionary deleted" << std::endl;
-    }*/
+    }
 
     bool wordExists(std::string word) const
     {
