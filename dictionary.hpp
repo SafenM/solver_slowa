@@ -28,18 +28,18 @@ class Dictionary {
         }
     }
 
-    ~Dictionary()
+    /*~Dictionary()
     {
     deleteTrie(root);
     //std::cout << "Dictionary deleted" << std::endl;
-    }
+    }*/
 
-    bool wordExists(std::string word)
+    bool wordExists(std::string word) const
     {
     return search(root, word);
     }
 
-    bool prefixExists(std::string prefix)
+    bool prefixExists(std::string prefix) const
     {
     return startsWith(root, prefix);
     }
