@@ -4,6 +4,7 @@
 #include <iostream>
 #include <set>
 #include <string>
+#include <fstream>
 #include "dictionary.hpp"
 #include "parameters.hpp"
 
@@ -20,6 +21,17 @@ public:
 		{
 			std::cout << *it << std::endl;
 		}
+	}
+
+	void printSolution(std::string filename)
+	{
+		std::ofstream file;
+		file.open(filename);
+		for (std::set<std::string>::iterator it = solution.begin(); it != solution.end(); ++it)
+		{
+			file << *it << std::endl;
+		}
+		file.close();
 	}
 	
 	void boardTraverse (const Dictionary *dict, const char boardBlueprint[parameters::ROW][parameters::COL], int row, int col, std::string word) {
@@ -55,6 +67,14 @@ public:
 			boardTraverse(dict, board, row - 1, col + 1, word);
 			boardTraverse(dict, board, row - 1, col - 1, word);
 			board[row][col] = '.';
+		}
+	}
+
+	void solve(const Dictionary *dict, const char board[parameters::ROW][parameters::COL]) {
+		for (int i = 0; i < parameters::ROW; i++) {
+			for (int j = 0; j < parameters::COL; j++) {
+				boardTraverse(dict, board, i, j, "");
+			}
 		}
 	}
 };

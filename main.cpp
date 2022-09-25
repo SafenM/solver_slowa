@@ -17,12 +17,9 @@ int main() {
         {'i', '†', 'k', 'l'},
         {'m', 'n', 'o', 'p'}
     };
-    for (int i = 0; i < parameters::ROW; i++) {
-		for (int j = 0; j < parameters::COL; j++) {
-			solver.boardTraverse(&dict, board, i, j, "");
-		}
-	}
+    solver.solve(&dict, board);
     solver.printSolution();
+    solver.printSolution("solution.txt");
 
     return 0;
 }
