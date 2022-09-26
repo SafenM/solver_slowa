@@ -30,7 +30,50 @@ public:
 		file.open(filename);
 		for (std::set<std::string>::iterator it = solution.begin(); it != solution.end(); ++it)
 		{
-			file << *it << std::endl;
+			for (int i = 0; i < (*it).length(); i++) //this is for encoding polish letters in UTF-8
+			{
+				if ( ((*it)[i] == '¥'))
+				{
+					file << "Ä…";
+				}
+				else if ( ((*it)[i] == '†'))
+				{
+					file << "Ä‡";
+				}
+				else if (((*it)[i] == '©'))
+				{
+					file << "Ä™";
+				}
+				else if (((*it)[i] == 'ˆ'))
+				{
+					file << "Å‚";
+				}
+				else if (((*it)[i] == 'ä'))
+				{
+					file << "Å„";
+				}
+				else if (((*it)[i] == '¢'))
+				{
+					file << "Ã³";
+				}
+				else if (((*it)[i] == '˜'))
+				{
+					file << "Å›";
+				}
+				else if (((*it)[i] == '«'))
+				{
+					file << "Åº";
+				}
+				else if (((*it)[i] == '«'))
+				{
+					file << "Å¼";
+				}
+				else
+				{
+					file << (*it)[i];
+				}
+			}
+			file << std::endl;
 		}
 		file.close();
 	}

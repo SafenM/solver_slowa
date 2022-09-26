@@ -18,9 +18,51 @@ namespace manager
             std::vector<char> row;
             for (int j = 0; j < 4; j++)
             {
-                char c;
+                std::string c;
                 file >> c;
-                row.push_back(c);
+
+                //UTF-8 to cp852 conversion
+
+                if (c == "Ä…")
+                {
+                    row.push_back('¥');
+                }
+                else if (c == "Ä‡")
+                {
+                    row.push_back('†');
+                }
+                else if (c == "Ä™")
+                {
+                    row.push_back('©');
+                }
+                else if (c == "Å‚")
+                {
+                    row.push_back('ˆ');
+                }
+                else if (c == "Å„")
+                {
+                    row.push_back('ä');
+                }
+                else if (c == "Ã³")
+                {
+                    row.push_back('¢');
+                }
+                else if (c == "Å›")
+                {
+                    row.push_back('˜');
+                }
+                else if (c == "Åº")
+                {
+                    row.push_back('«');
+                }
+                else if (c == "Å¼")
+                {
+                    row.push_back('¾');
+                }
+                else
+                {
+                    row.push_back(c[0]);
+                }
             }
             board.push_back(row);
         }
@@ -80,7 +122,7 @@ namespace manager
     void main_loop()
     {
         std::cout << "Witaj w programie do znajdowania slow w grze Boggle" << std::endl;
-        Dictionary dict("slowa.txt");
+        Dictionary dict("slownik.txt");
         while(true)
         {
             std::vector<std::vector<char>> board;
