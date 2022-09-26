@@ -24,7 +24,7 @@ class Dictionary {
         }
     else
         {
-        std::cout << "Unable to open file";
+        std::cout << "Unable to open file slowa.txt\n";
         }
     }
 

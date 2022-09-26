@@ -5,6 +5,7 @@
 #include <set>
 #include <string>
 #include <fstream>
+#include <vector>
 #include "dictionary.hpp"
 #include "parameters.hpp"
 
@@ -34,26 +35,18 @@ public:
 		file.close();
 	}
 	
-	void boardTraverse (const Dictionary *dict, const char boardBlueprint[parameters::ROW][parameters::COL], int row, int col, std::string word) {
-		char board[parameters::ROW][parameters::COL];
-	
-		for (int i = 0; i < parameters::ROW; i++) {
-			for (int j = 0; j < parameters::COL; j++) {
-				board[i][j] = boardBlueprint[i][j];
-			}
-		}
-	
+	void boardTraverse (const Dictionary *dict, const std::vector<std::vector<char>> boardBlueprint, int row, int col, std::string word) { //this is one full board traverse from selected starting position
+		
+		std::vector<std::vector<char>> board = boardBlueprint; //this makes a deep copy of boardBlueprint
+
 		if (row < 0 || row >= parameters::ROW || col < 0 || col >= parameters::COL) {
-			//cout << "out of bounds" << endl;
 			return;
 		}
 		if (board[row][col] == '*') {
-			//cout << "star" << endl;
 			return;
 		}
 		word += board[row][col];
 		if (dict->prefixExists(word)) {
-			//cout << "found" << endl;
 			if (dict->wordExists(word)) {
 				solution.insert(word);
 			}
@@ -70,9 +63,9 @@ public:
 		}
 	}
 
-	void solve(const Dictionary *dict, const char board[parameters::ROW][parameters::COL]) {
-		for (int i = 0; i < parameters::ROW; i++) {
-			for (int j = 0; j < parameters::COL; j++) {
+	void solve(const Dictionary *dict, const std::vector<std::vector<char>> board) { //this calls boardTraverse for every starting position
+		for (int i = 0; i < board.size(); i++) {
+			for (int j = 0; j < board[i].size(); j++) {
 				boardTraverse(dict, board, i, j, "");
 			}
 		}
